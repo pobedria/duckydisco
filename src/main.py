@@ -49,69 +49,39 @@ class AudioHandler:
 
     def transform_spectrum(self, spectrum):
 
-        # D = librosa.amplitude_to_db(np.abs(spectrum), ref=np.max)
+        # Better change SQRT to LOG but now works and it is fine
         summa = numpy.sqrt(numpy.sqrt(numpy.sqrt(numpy.mean(np.abs(spectrum)**2, axis=1))))
         freq_list = summa
         new_list = []
 
-        # sys.stdout.write("\r")
-        # for i, freq in enumerate(freq_list):
-        #     sys.stdout.write(f"{freq:16.8}\t")
-        # sys.stdout.flush()
+        k = 20  # you can play with this coefficint to change bars aplitude on keyboard
 
-        K = 20
-        # new_list.append(int(freq_list[0] * K * 22/22) -5)
-        # new_list.append(int(freq_list[1] * K * 22/19) -5)
-        # new_list.append(int(freq_list[2] * K * 22/13) -5)
-        # new_list.append(int(freq_list[3] * K * 22/12) -5)
-        # new_list.append(int(freq_list[4] * K * 22/11) -5)
-
-        new_list.append(int(freq_list[0] * K ))
-        new_list.append(int(freq_list[1] * K ))
-        new_list.append(int(freq_list[2] * K ))
-        new_list.append(int(freq_list[3] * K ))
-        new_list.append(int(freq_list[4] * K ))
-
-        # render_spectrum(new_list)
+        new_list.append(int(freq_list[0] * k))
+        new_list.append(int(freq_list[1] * k))
+        new_list.append(int(freq_list[2] * k))
+        new_list.append(int(freq_list[3] * k))
+        new_list.append(int(freq_list[4] * k))
         queue.put(new_list)
-
 
     def mainloop(self):
         while (self.stream.is_active()): # if using button you can set self.stream to 0 (self.stream = 0), otherwise you can use a stop condition
             time.sleep(0.2)
 
-max_amplitude = [0] * 5
-count = 5
-def render_spectrum():
 
-    global max_amplitude
-    global count
+def render_spectrum():
     with keyboard() as dev, dev.programming() as kb:
         seq = ['000000'] * (6 * 22 + 1)
         while True:
             freq_list = queue.get()
-
             new_seq = seq.copy()
 
             for i, fre in enumerate(freq_list):
                 start = i
-
-
                 end = start + 6 * fre
                 for j in range(start, end+1, 6):
                     try:
                         if j == end:
-                            # if j > max_amplitude[i]:
                             new_seq[j] = "0000ff"
-                            #     max_amplitude[i] = j
-                            #     count = 5
-                            # else:
-                            #     new_seq[max_amplitude[i]] = "0000ff"
-                            #     if count == 0:
-                            #         max_amplitude[i] = max_amplitude[i]-6
-                            #         count = 5
-                            #     else:
-                            #         count -= 1
                         else:
                             new_seq[j] = "ff0000"
                     except IndexError:
