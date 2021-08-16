@@ -3,8 +3,13 @@
 This project allows you turn your Ducky keyboard int music equalizer
 
 ## Installation
-Install linux packages
-chmod +x dependencies.sh
+`pipenv install`
 
-Install python packages
-poetry install
+## Run
+Active pipenv
+
+`pipnev shell`
+
+Run main python script
+
+`python src/main.py` 
