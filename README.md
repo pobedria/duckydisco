@@ -8,7 +8,7 @@ This project allows you turn your Ducky keyboard into music equalizer
 ## Run
 Activate pipenv
 
-`pipnev shell`
+`pipenv shell`
 
 Run main python script
 
