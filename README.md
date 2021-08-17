@@ -1,12 +1,12 @@
 # Ducky Disco
 
-This project allows you turn your Ducky keyboard int music equalizer
+This project allows you turn your Ducky keyboard into music equalizer
 
 ## Installation
 `pipenv install`
 
 ## Run
-Active pipenv
+Activate pipenv
 
 `pipnev shell`
 
