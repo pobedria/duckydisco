@@ -54,7 +54,7 @@ class AudioHandler:
         freq_list = summa
         new_list = []
 
-        k = 20  # you can play with this coefficint to change bars aplitude on keyboard
+        k = 20  # you can play with this coefficient to change bars aplitude on keyboard
 
         new_list.append(int(freq_list[0] * k))
         new_list.append(int(freq_list[1] * k))
