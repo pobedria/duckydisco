@@ -12,7 +12,7 @@ Activate pipenv
 
 Run main python script
 
-`python src/main.py
+`python src/main.py`
 
 After first run you will get the error:
 
