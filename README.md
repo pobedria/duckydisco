@@ -17,7 +17,7 @@ Run main python script
 After first run you will get an error:
 
 *PermissionError: [Errno 13] Permission denied: '/dev/hidrawX'*. Where X - is a specific port number, assigned by OS.
-To resolve it you need to grant permissions to this port
+To resolve it you need to grant permissions for this port
 
 `sudo chmod 777 /dev/hidrawX`
 
